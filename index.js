@@ -4,6 +4,7 @@ const hbs = require('express-handlebars').create({
 });
 
 const homeController = require('./controllers/homeController');
+const catalogController = require('./controllers/catalogController');
 const defaultController = require('./controllers/defaultController');
 
 const port = 3000;
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/static', express.static('static'));
 
 app.use(homeController);
+app.use('/catalog', catalogController);
 // attach other controllers
 app.all('*', defaultController);
 

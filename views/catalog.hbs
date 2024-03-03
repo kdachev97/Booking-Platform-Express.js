@@ -1,1 +1,10 @@
-<h1>Catalog</h1>
+<section>
+  <h1>All Accommodations</h1>
+  <main>
+    <ul>
+      {{#each accommodations}}
+      {{> accommodationCard}}
+      {{/each}}
+    </ul>
+  </main>
+</section>

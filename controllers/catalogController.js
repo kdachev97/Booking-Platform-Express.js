@@ -3,10 +3,18 @@ const { getAll, getById } = require('../services/accommodationService');
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
-  const accommodations = getAll();
+  const search = req.query.search || '';
+  const city = req.query.city || '';
+  const fromPrice = Number(req.query.fromPrice) || 1;
+  const toPrice = Number(req.query.toPrice) || 1000;
+  const accommodations = getAll(search, city, fromPrice, toPrice);
   res.render('catalog', {
     title: 'All Accommodation',
-    accommodations
+    accommodations,
+    search: search,
+    city: city,
+    fromPrice: fromPrice,
+    toPrice: toPrice
   });
 });
 

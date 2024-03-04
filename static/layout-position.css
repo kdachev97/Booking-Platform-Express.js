@@ -69,3 +69,23 @@
 .layout.right.small .content {
   margin-right: 200px;
 }
+
+.label-margin {
+  margin-right: 15px;
+}
+
+.label-margin-left {
+  margin-left: 5px;
+}
+
+.content-right {
+  text-align: right;
+}
+
+.col-left {
+  text-align: left;
+}
+
+.label-margin-bottom {
+  margin-bottom: 15px;
+}

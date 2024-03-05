@@ -1,13 +1,13 @@
-const { getAll, getById } = require('../services/accommodationService');
+const { getAll, getById } = require('../services/roomService');
 
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const search = req.query.search || '';
   const city = req.query.city || '';
   const fromPrice = Number(req.query.fromPrice) || 1;
   const toPrice = Number(req.query.toPrice) || 1000;
-  const accommodations = getAll(search, city, fromPrice, toPrice);
+  const accommodations = await getAll(search, city, fromPrice, toPrice);
   res.render('catalog', {
     title: 'All Accommodation',
     accommodations,
@@ -18,9 +18,9 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const accommodationId = req.params.id;
-  const accommodation = getById(accommodationId);
+  const accommodation = await getById(accommodationId);
 
   if (accommodation) {
     res.render('details', {

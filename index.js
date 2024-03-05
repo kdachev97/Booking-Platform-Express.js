@@ -1,30 +1,18 @@
 const express = require('express');
-const hbs = require('express-handlebars').create({
-  extname: '.hbs'
-});
+const databaseConfig = require('./config/database');
+const expressConfig = require('./config/express');
+const routesConfig = require('./config/routes');
 
-const homeController = require('./controllers/homeController');
-const catalogController = require('./controllers/catalogController');
-const createController = require('./controllers/createController');
-const defaultController = require('./controllers/defaultController');
-const defaultTitle = require('./middlewares/defaultTitle');
 
-const port = 3000;
+async function start() {
+  const port = 3000;
+  const app = express();
 
-const app = express();
+  expressConfig(app);
+  routesConfig(app);
+  await databaseConfig(app);
 
-app.engine('.hbs', hbs.engine);
-app.set('view engine', '.hbs');
+  app.listen(port, () => console.log(`Server listening on port ${port}`));
+}
 
-app.use(express.urlencoded({ extended: false }));
-app.use('/static', express.static('static'));
-
-app.use(defaultTitle('Accommodation'));
-
-app.use(homeController);
-app.use('/catalog', catalogController);
-app.use('/create', createController);
-// attach other controllers
-app.all('*', defaultController);
-
-app.listen(port, () => console.log(`Server listening on port ${port}`));
+start();

@@ -16,11 +16,18 @@
         <p>City: <strong>{{city}}</strong></p>
         <p>{{description}}</p>
 
-        <div>
-          Price per night: <strong>{{price}}€</strong>
-        </div>
+        <div class="align-center">
+          <div>
+            Price per night: <strong>{{price}}€</strong>
+          </div>
+          <ul class="catalog">
+            {{#each facilities}}
+            <li><img class="facility-icon" src="{{iconUrl}}"></li>
+            {{/each}}
+          </ul>
 
-      </div>
+          <a class="action cta" href="/facility/{{_id}}/decorateRoom">Edit Facilities</a>
+        </div>
     </main>
 
     <footer>Listed by (TODO add owner)</footer>

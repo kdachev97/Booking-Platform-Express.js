@@ -13,6 +13,9 @@
       <a href="/" class="title-logo">
         <img src="/static/assets/room2.jpeg">
       </a>
+      {{#if hasUser}}
+      <span>Welcome, {{username}}</span>
+      {{/if}}
       <nav class="main-nav nav-mid">
         <ul>
           <li>

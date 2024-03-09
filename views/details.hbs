@@ -1,5 +1,5 @@
 <section id="catalog-section">
-  {{#with accommodation}}
+  {{#with room}}
   <h1 class="item">{{name}}</h1>
   <div class="item padded">
 
@@ -22,12 +22,16 @@
           </div>
           <ul class="catalog">
             {{#each facilities}}
-            <li><img class="facility-icon" src="{{iconUrl}}"></li>
+            <li>{{label}} <img class="facility-icon" src="{{iconUrl}}"></li>
             {{/each}}
           </ul>
 
-          <a class="action cta" href="/facility/{{_id}}/decorateRoom">Edit Facilities</a>
+          {{#if isOwner}}
+          <a class="action" href="/facility/{{_id}}/decorateRoom">Facilities</a>
+          {{/if}}
         </div>
+
+      </div>
     </main>
 
     <footer>Listed by (TODO add owner)</footer>

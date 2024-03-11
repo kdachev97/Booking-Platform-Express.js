@@ -1,4 +1,5 @@
 const { getById, update, deleteById } = require('../services/roomService');
+const { parseError } = require('../utils/parser');
 
 const roomController = require('express').Router();
 
@@ -32,7 +33,7 @@ roomController.post('/:id/edit', async (req, res) => {
     req.body._id = roomId;
     res.render('edit', {
       title: 'Edit Accomodation',
-      error: err.message.split('\n'),
+      error: parseError(error),
       room: req.body
     });
   }
